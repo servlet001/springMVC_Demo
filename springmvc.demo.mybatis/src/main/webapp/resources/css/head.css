@@ -1,0 +1,36 @@
+@charset "utf-8";
+/* CSS Document */
+body{
+	margin:0px;padding:0px; font-family:Arial,"微软雅黑"; background:none; font-size:12px;
+}
+.top{
+	background:url(../images/header1_bg.jpg); padding-right:20px
+}
+.header {
+    height: 68px;
+}
+.logo {
+    margin: 8px 0 0 10px;
+}
+.l {
+    float: left;
+}
+
+a:link, a:visited {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+a, a:active {
+    outline: medium none;
+}
+.nav {
+    color: #FFFFFF;
+    font-size: 14px;
+    margin-top: 24px;
+}
+.r {
+    float: right;
+}
+
+
+

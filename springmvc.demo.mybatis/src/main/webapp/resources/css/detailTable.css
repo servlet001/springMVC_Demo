@@ -1,0 +1,62 @@
+table.tborder {
+    border-collapse: collapse;
+}
+
+.portlet-section-header {
+    background: url("../images/bg_header.gif") repeat-x scroll 0 0 #6F6F6F;
+    color: #FFFFFF;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 20px;
+    text-decoration: none;
+}
+
+table.tborder tr td {
+    border: 1px solid #999999;
+}
+
+.portlet-section-body {
+    background: none repeat scroll 0 0 #FFFFFF;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    line-height: 20px;
+}
+
+.portlet-section-alternate {
+    background: none repeat scroll 0 0 #F5F5F5;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    line-height: 20px;
+}
+.portlet-font {
+    color: #000000;
+    font-family: Tahoma,Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 20px;
+    text-decoration: none;
+}
+.portlet-form-button {
+    background-color: #DDDDDD;
+    font-weight: bold;
+    text-indent: 1px;
+    border: 1px solid Black;
+    font-family: Verdana,Geneva,Arial,Helvetica,sans-serif;
+    font-size: 12px;
+}
+a.command:link, a.command:visited, a.command:active {
+    color: #0000FF;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 20px;
+    text-decoration: none;
+}
+
+a.command:hover {
+    color: orange;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 20px;
+    text-decoration: none;
+}

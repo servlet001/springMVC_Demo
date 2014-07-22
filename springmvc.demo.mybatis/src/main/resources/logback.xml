@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  
+    debug="true"    启动时输出配置加载信息  
+    scan="true"     默认每分钟自动扫描  
+    scanPeriod="30 seconds"     设置每30秒自动扫描,若没有指定具体单位则以milliseconds为标准(单位:milliseconds, seconds, minutes or hours)  
+-->  
+<configuration> 
+	<!-- 日志保存路径为tomcat下面的logs下面，这样设置了就可以输出日志文件了 -->
+	<property name="logbase" value="${catalina.base}" />  
+
+    <appender name="FILE-INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${logbase}/logs/log-info/logInfo.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">  
+             <FileNamePattern>${logbase}/logs/log-info/log-info.%d{yyyy-MM-dd}.%i.log.zip</FileNamePattern>
+             <maxHistory>30</maxHistory>
+             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>10mb</maxFileSize>
+		 	</timeBasedFileNamingAndTriggeringPolicy>
+         </rollingPolicy>
+          <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %-5level %logger{36} - %msg%n</Pattern>
+         </encoder>
+         <filter class="ch.qos.logback.classic.filter.LevelFilter">  
+             <level>INFO</level>  
+             <onMatch>ACCEPT</onMatch>  
+             <onMismatch>DENY</onMismatch>  
+         </filter>
+    </appender>
+	
+    <appender name="FILE-DEBUG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${logbase}/logs/log-debug/logdebug.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<FileNamePattern>${logbase}/logs/log-debug/log-debug_%i.log.zip</FileNamePattern>
+			<minIndex>1</minIndex>
+			<maxIndex>10</maxIndex>
+		</rollingPolicy>
+		 <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<MaxFileSize>20MB</MaxFileSize>
+		</triggeringPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %-5level %logger{36} - %msg%n</Pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">  
+             <level>DEBUG</level>  
+             <onMatch>ACCEPT</onMatch>
+             <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+  
+   <appender name="FILE-ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		 <File>${logbase}/logs/log-error/log-err.log</File>
+         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">  
+             <FileNamePattern>${logbase}/logs/log-error/log-error.%d{yyyy-MM-dd}.log</FileNamePattern> 
+             <maxHistory>30</maxHistory>
+         </rollingPolicy>
+         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder"> 
+             <pattern>%d{HH:mm:ss.SSS} %-5level [%thread] %-5level %logger{50} - %msg%n  
+             </pattern>  
+         </encoder>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder"> 
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
+        </encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <OnMismatch>DENY</OnMismatch>
+            <OnMatch>ACCEPT</OnMatch>
+        </filter>
+    </appender>
+    
+    <appender name="LOG-ALL" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${logbase}/logs/log-all.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<FileNamePattern>${logbase}/logs/log-all_%i.log.zip</FileNamePattern>
+			<minIndex>1</minIndex>
+			<maxIndex>10</maxIndex>
+		</rollingPolicy>
+		 <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<MaxFileSize>20MB</MaxFileSize>
+		</triggeringPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %-5level %logger{36} - %msg%n</Pattern>
+        </encoder>
+    </appender>
+
+	
+    <appender name="hibernate" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logbase}/logs/hibernate/hibernate.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logbase}/logs/hibernate.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>
+                %d{HH:mm:ss.SSS} - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>  
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>  
+		</encoder>  
+   </appender>
+	
+	<!-- 
+	<logger level="INFO" additivity="false" name="org.eclipse.virgo.medic.eventlog.localized">
+		<appender-ref ref="EVENT_LOG_STDOUT" />
+		<appender-ref ref="EVENT_LOG_FILE" />
+	</logger>
+	<logger level="INFO" additivity="false" name="org.eclipse.virgo.medic.eventlog.default">
+		<appender-ref ref="SIFTED_LOG_FILE" />
+		<appender-ref ref="FILE-ERROR" />
+		<appender-ref ref="FILE-INFO" />
+		<appender-ref ref="FILE-DEBUG" />
+	</logger> 
+	<logger name="org.hibernate">
+        <level value="DEBUG"/>
+        <appender-ref ref="hibernate"/>
+    </logger>
+    <logger name="java.sql">
+        <level value="DEBUG"/>
+        <appender-ref ref="hibernate"/>
+    </logger>
+    -->
+	<root level="DEBUG">
+		<!--  -->
+		<appender-ref ref="STDOUT" />
+		
+		<appender-ref ref="LOG-ALL" />
+		<appender-ref ref="FILE-ERROR" />
+		<appender-ref ref="FILE-INFO" />
+		<appender-ref ref="FILE-DEBUG" />
+	</root>
+</configuration>

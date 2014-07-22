@@ -1,0 +1,200 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>springmvc.demo</groupId>
+		<artifactId>springmvc.demo.parent</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>../springmvc.demo.parent/pom.xml</relativePath>
+	</parent>
+	<artifactId>springmvc.demo.mybatis</artifactId>
+	<packaging>war</packaging>
+
+	<name>springmvc.demo.mybatis</name>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<dependencies>
+			
+			<!-- spring dependency begin -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aop</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+			</dependency>
+	
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context-support</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-orm</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+    			<artifactId>spring-oxm</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aspects</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+			</dependency>
+			<!-- spring dependency end -->
+			<!-- mybatis dependency begin -->
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis-spring</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>cglib</groupId>
+				<artifactId>cglib</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>aspectj</groupId>
+				<artifactId>aspectjweaver</artifactId>
+			</dependency>
+			<!-- mybatis dependency end -->
+			<!-- log start -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+			</dependency>
+			<dependency>
+			    <groupId>ch.qos.logback</groupId>
+			    <artifactId>logback-core</artifactId>
+			</dependency>
+			<dependency>
+			    <groupId>ch.qos.logback</groupId>
+			    <artifactId>logback-classic</artifactId>
+			</dependency>
+			<!-- log end -->
+			
+			<!-- validate  start -->
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-validator</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>javax.validation</groupId>
+				<artifactId>validation-api</artifactId>
+			</dependency>
+			<!-- validate end -->
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>commons-dbcp</groupId>
+				<artifactId>commons-dbcp</artifactId>
+			</dependency>
+			<dependency>
+			    <groupId>commons-fileupload</groupId>
+			    <artifactId>commons-fileupload</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>servlet-api</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.jackson</groupId>
+				<artifactId>jackson-core-asl</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.jackson</groupId>
+				<artifactId>jackson-mapper-asl</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>org.freemarker</groupId>
+				<artifactId>freemarker</artifactId>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+			</dependency>
+	</dependencies>
+	
+	<build>
+		<finalName>demo</finalName>
+		<plugins>
+			<!-- 运行命令 mvn jetty：run  -->
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>maven-jetty-plugin</artifactId>
+				<version>6.1.26</version>
+				<configuration>
+					<!--  web应用的配置的 -->
+          			<contextPath>/demo</contextPath>
+					<scanIntervalSeconds>10</scanIntervalSeconds>
+					<connectors>  
+			            <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">  
+			                <port>9090</port>  
+			            </connector>  
+		        	</connectors>       
+					<stopKey>foo</stopKey>
+					<stopPort>9999</stopPort>
+					<webDefaultXml>webdefault.xml</webDefaultXml>
+				</configuration>
+			</plugin>
+			<!-- -->
+			
+			<!-- 热部署到tomcat 需要开启本地tomcat的manager 命令 package tomcat:redeploy-->
+			<plugin>
+		      <groupId>org.codehaus.mojo</groupId>
+		      <artifactId>tomcat-maven-plugin</artifactId>
+		      <version>1.1</version>
+		      <configuration>
+				  <url>http://localhost:8080/manager/html</url>
+				  <server>tomcat</server>
+				  <path>/demo</path>
+			  </configuration>
+		     </plugin>
+		     
+	        <!-- cargo 自动化部署  type:existing 运行mvn cargo:run  这样的话项目会部署到已经存在的tomcat下面 并启动tomcat
+	        <plugin>
+		        <groupId>org.codehaus.cargo</groupId>
+		        <artifactId>cargo-maven2-plugin</artifactId>
+		        <version>1.3.3</version>
+		        <configuration>
+				    <container>
+				      <containerId>tomcat6x</containerId>
+				      <home>H:\apache-tomcat-6.0.36</home>
+				    </container>
+				    <configuration>
+				    	<type>existing</type>
+				    	<home>H:\apache-tomcat-6.0.36</home>
+				  	</configuration>
+				</configuration>
+		    </plugin>-->
+		</plugins>
+	</build>
+	
+</project>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+
+	<context:property-placeholder location="classpath:jdbc.properties" />
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<!-- 连接池启动时的初始值 -->
+		<property name="initialSize" value="${initialSize}" />
+		<!-- 连接池的最大值 -->
+		<property name="maxActive" value="${maxActive}" />
+		<!-- 最大空闲值，当经过一个高峰时间后，连接池可以慢慢将已经用不到的连接慢慢释放一部分，一直减少到maxIdle为止 -->
+		<property name="maxIdle" value="${maxIdle}" />
+		<!-- 最小空闲值，当空闲的连接数少于阀值时，连接池就会预申请一些连接，以免洪峰来时来不及申请 -->
+		<property name="minIdle" value="${minIdle}" />
+	</bean>
+
+	<!-- 创建SqlSessionFactory，同时指定数据源 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- 指定sqlMapConfig总配置文件，订制的environment在spring容器中不在生效 -->
+		<property name="configLocation" value="classpath:sqlMapConfig.xml" />
+		<!--指定实体类映射文件，可以指定同时指定某一包以及子包下面的所有配置文件，mapperLocations和configLocation有一个即可，当需要为实体类指定别名时，可指定configLocation属性，再在mybatis总配置文件中采用mapper引入实体类映射文件 -->
+		<!-- <property name="mapperLocations" value="classpath*:com/xxt/ibatis/dbcp/**/*.xml"/> -->
+	</bean>
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+	
+	<tx:annotation-driven transaction-manager="txManager"/>
+	
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	
+
+
+	<!-- <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"> 
+		<property name="dataSource" ref="dataSource" /> <property name="persistenceXmlLocation" 
+		value="classpath:META-INF/persistence.xml" /> <property name="loadTimeWeaver"> 
+		<bean class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver" 
+		/> </property> </bean> <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"> 
+		<property name="entityManagerFactory" ref="entityManagerFactory" /> </bean> 
+		<tx:annotation-driven transaction-manager="transactionManager" /> -->
+
+	<!-- 以静态变量保存ApplicationContext <bean class="org.tll.erp.utils.SpringContextHolder" 
+		lazy-init="false" /> <bean name="openEntityManagerInViewInterceptor" class="org.springframework.orm.jpa.support.OpenEntityManagerInViewInterceptor"> 
+		<property name="entityManagerFactory" ref="entityManagerFactory" /> </bean> -->
+
+</beans>

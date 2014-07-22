@@ -1,0 +1,256 @@
+body,html {
+	height: 100%;
+}
+
+body {
+	padding: 0px;
+	margin: 0;
+	overflow: hidden;
+}
+
+.l-link2 {
+	text-decoration: underline;
+	color: white;
+	margin-left: 2px;
+	margin-right: 2px;
+}
+
+.l-layout-top {
+	background: #102A49;
+	color: White;
+}
+
+.l-layout-bottom {
+	background: #E5EDEF;
+	text-align: center;
+}
+
+.l-link {
+	display: block;
+	line-height: 22px;
+	height: 22px;
+	padding-left: 16px;
+	border: 1px solid white;
+	margin: 4px;
+	color: #333;
+}
+
+.l-link-over {
+	background: #FFEEAC;
+	border: 1px solid #DB9F00;
+}
+
+.l-winbar {
+	background: #2B5A76;
+	height: 30px;
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+	width: 100%;
+	z-index: 99999;
+}
+
+.space {
+	color: #E7E7E7;
+}
+/*  */
+.l-topmenu {
+	margin: 0;
+	padding: 0;
+	height: 31px;
+	line-height: 31px;
+	background: url('ligerui/img/top.jpg') repeat-x bottom;
+	position: relative;
+	border-top: 1px solid #1D438B;
+}
+
+.l-topmenu-logo {
+	color: #E7E7E7;
+	padding-left: 35px;
+	line-height: 26px;
+	background: url('ligerui/img/topicon.gif') no-repeat 10px 5px;
+}
+
+.l-topmenu-welcome {
+	position: absolute;
+	height: 24px;
+	line-height: 24px;
+	right: 30px;
+	top: 2px;
+	color: #070A0C;
+}
+
+.l-topmenu-welcome a {
+	color: #E7E7E7;
+	text-decoration: underline
+}
+
+#top {
+	background-color: #d0def9;
+	height: 68px;
+	background-image: url(../images/bg_top.gif);
+	background-repeat: repeat-x;
+}
+
+/*top*/
+#header {
+	height: 105px;
+	background-image: url(../images/top.gif);
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+
+#logo {
+	width: 245px;
+	float: left;
+	height: 55px;
+	padding-top: 8px;
+	padding-left: 45px;
+}
+
+#header #yyxt {
+	height: 43px;
+	width: 183px;
+	float: left;
+	padding-top: 23px;
+	padding-left: 10px;
+}
+
+#header #tuichu {
+	height: 39px;
+	float: right;
+	color: #FFFFFF;
+	height: 24px;
+	width: 51px;
+	border: 0;
+	margin-top: 6px;
+	margin-right: 20px;
+}
+
+#top #header #top_right {
+	height: 66px;
+	margin-left: 346px;
+}
+
+#top #header #top_right #top_menu {
+	height: 39px;
+}
+
+#top #header #bg_nav {
+	background-image: url(../image/nav.gif);
+	background-repeat: no-repeat;
+	margin: 0px;
+	padding: 0px;
+	clear: right;
+}
+
+#top #header #bg_nav #nav {
+	background-image: url(../image/bg_nav.gif);
+	height: 27px;
+	margin-left: 44px;
+	background-repeat: repeat-x;
+	background-position: left bottom;
+	line-height: 27px;
+	color: #14427d;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+#top #header #bg_nav #nav #welcome {
+	padding: 0px;
+	float: left;
+	margin: 0px;
+}
+
+#top #header #bg_nav #nav #time {
+	background-image: url(../image/icon_watch.gif);
+	background-repeat: no-repeat;
+	background-position: left center;
+	float: right;
+	padding-left: 30px;
+	margin-right: 30px;
+}
+/* 顶部 */
+.l-topmenu {
+	margin: 0;
+	padding: 0;
+	height: 24px;
+	line-height: 24px;
+	background: #1B3160 url('../images/index/top.jpg') repeat-x bottom;
+	position: relative;
+	border-top: 1px solid #7C96AF;
+	border-bottom: 2px solid #4E7194;
+}
+
+.l-topmenu-logo {
+	color: #070A0C;
+	padding-left: 30px;
+	background: url('../images/index/topicon.gif') no-repeat 10px 4px;
+}
+
+.l-topmenu-welcome {
+	position: absolute;
+	height: 24px;
+	right: 30px;
+	top: 0px;
+	color: #070A0C;
+}
+
+.l-topmenu-welcome a {
+	color: #070A0C;
+	text-decoration: underline
+}
+
+.l-topmenu-username {
+	color: #070A0C;
+	font-weight: bold;
+}
+
+/* 菜单列表 */
+.menulist {
+	margin-left: 2px;
+	margin-right: 2px;
+	margin-top: 2px;
+	text-align: left;
+	color: #000;
+}
+
+.menulist li {
+	height: 24px;
+	line-height: 24px;
+	padding-left: 24px;
+	display: block;
+	position: relative;
+	cursor: pointer;
+	text-align: left;
+}
+
+.menulist li img {
+	position: absolute;
+	left: 4px;
+	top: 4px;
+	width: 16px;
+	height: 16px;
+}
+
+.menulist li.over {
+	background: url('../images/index/menuitem.gif') repeat-x 0px 0px;
+}
+
+.menulist li.over .menuitem-l {
+	background: url('../images/index/menuitem.gif') repeat-x 0px -24px;
+	width: 2px;
+	height: 24px;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.menulist li.over .menuitem-r {
+	background: url('../images/index/menuitem.gif') repeat-x -1px -24px;
+	width: 2px;
+	height: 24px;
+	position: absolute;
+	right: 0;
+	top: 0;
+}

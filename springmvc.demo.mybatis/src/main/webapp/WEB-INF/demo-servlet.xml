@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:util="http://www.springframework.org/schema/utils"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+
+	<!-- 指定扫描包位置 -->
+	<context:component-scan base-package="springmvc.demo.mybatis" />
+
+	<!-- annotation-driven 相当于注册了DefaultAnnotationHandlerMapping和AnnotationMethodHandlerAdapter两个bean， 
+		配置一些messageconverter。即解决了@Controller注解的使用前提配置。 这里手动注入..... <mvc:annotation-driven/> -->
+
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+		<!-- 
+		<property name="interceptors">
+			<list>
+				<ref bean="openEntityManagerInViewInterceptor"/>
+			</list>
+		</property> -->
+	</bean>
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+	</bean>
+
+	<!-- 配置 文件上传的支持 一定要加id="multipartResolver" 不然就没有效果 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="1024000" />
+		<property name="resolveLazily" value="true" />
+		<property name="maxInMemorySize" value="1024000" />
+	</bean>
+
+	<!-- freemarker的配置 -->
+	<context:property-placeholder location="classpath:freemarker.properties" ignore-unresolvable="true"/>
+	<bean id="freemarkerConfig"
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<property name="templateLoaderPath" value="/WEB-INF/template/" />
+		<property name="defaultEncoding" value="utf-8" />
+		<property name="freemarkerSettings">
+			<props>
+				<!-- 每次扫描模板文件是否更新的时间间隔，默认5秒 -->
+				<prop key="template_update_delay">10</prop>
+				<prop key="locale">zh_CN</prop>
+				<prop key="datetime_format">yyyy-MM-dd</prop>
+				<prop key="date_format">yyyy-MM-dd</prop>
+				<!-- 数字格式化 -->
+				<prop key="number_format">#.##</prop>
+			</props>
+		</property>
+		<!-- 配置共享变量 -->
+		<property name="freemarkerVariables">
+			<map>
+				<entry key="webRoot" value="${webRoot}"></entry>
+				<entry key="version" value="${version}"></entry>
+			</map>
+		</property>
+	</bean>
+
+	<!-- FreeMarker视图解析 如返回student。。在这里配置后缀名ftl和视图解析器。。 -->
+	<bean
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+		<!-- ViewResolver加载顺序 ：第二个加载 -->
+		<property name="order" value="2" />
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.freemarker.FreeMarkerView" />
+		<property name="suffix" value=".ftl" />
+		<property name="cache" value="true" />
+		<!-- 设置 request变量名为 rc
+		<property name="requestContextAttribute" value="rc" />
+		-->
+		<property name="contentType" value="text/html;charset=utf-8" />
+		<property name="exposeRequestAttributes" value="true" />
+		<property name="exposeSessionAttributes" value="true" />
+		<property name="exposeSpringMacroHelpers" value="true" />
+	</bean>
+
+	
+	<!-- mybatis 集成到spring上去！-->
+	<import resource="classpath:applicationContext-mybatis.xml"/>
+	
+	
+</beans>

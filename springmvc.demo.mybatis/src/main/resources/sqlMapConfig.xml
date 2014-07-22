@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>    
+    
+<!DOCTYPE configuration PUBLIC     
+    "-//mybatis.org//DTD Config 3.0//EN"    
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">    
+    
+<configuration>
+	<!--  
+    <properties>    
+		<property name="dialect" value="oracle"/>    
+    </properties>    
+    <plugins>    
+		<plugin interceptor="com.isoftstone.agiledev.orm.mybatis.interceptor.PaginationInterceptor"/>    
+    </plugins>    
+  	--> 
+  	
+  	<typeAliases>
+  		<typeAlias type="springmvc.demo.mybatis.bean.user.User" alias="User"/>
+  	</typeAliases>
+  	
+   <mappers>
+      <mapper resource="springmvc/demo/mybatis/mapper/user/userMapper.xml" />
+   </mappers>
+   
+</configuration>

@@ -1,0 +1,78 @@
+body, ul, li, h1, h2, h3, h4, h5, h6, p, form, dl, dt, dd {
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+}
+ #accordion1 a {
+    background-color: #E6EFFE;
+    background-image: url("../images/icon_menu.gif");
+    background-position: 5px 5px;
+    background-repeat: no-repeat;
+    border-bottom: 1px solid #99BBE8;
+    clear: both;
+    color: #15428B;
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 20px;
+    text-decoration: none;
+    width: 100%;
+}
+#accordion1 a:hover{
+	background-color: #99bbe8;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #FFFFFF;
+	color: #FFFFFF;
+	background-image: url(../images/icon_menu_a.gif);
+	background-repeat: no-repeat;
+	background-position: 5px 5px;
+}
+
+.btn_lang1{
+	background-image: url(../images/button.jpg);
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+	line-height: 26px;
+	height: 24px;
+	width: 55px;
+	border:0;
+	cursor:pointer;
+	margin-top: 1px;
+	margin-bottom: 1px;
+}
+.btn_lang2{
+	background-image: url(../images/button.jpg);
+	background-repeat: no-repeat;
+	background-position: 0px -28px;
+	line-height: 24px;
+	height: 26px;
+	width: 78px;
+	border:0;
+	cursor:pointer;
+	margin-top: 1px;
+	margin-bottom: 1px;
+}
+.btn_lang3{
+	background-image: url(../images/button.jpg);
+	background-repeat: no-repeat;
+	background-position: 0px -57px;
+	line-height: 26px;
+	height: 24px;
+	width: 104px;
+	border:0;
+	cursor:pointer;
+	margin-top: 1px;
+	margin-bottom: 1px;
+}
+
+.overlay{
+width: 100%; 
+z-index: 1001;
+background: url('../images/ui-bg_flat_0_aaaaaa_40x100.png') repeat-x scroll 50% 50% #AAAAAA;
+opacity: 0.3;
+left: 0;
+filter: alpha(opacity=30);
+position: absolute;
+top: 0;
+}
